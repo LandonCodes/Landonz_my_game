@@ -4,6 +4,8 @@
 import pygame as pg
 import random
 import os
+
+from os import path
 # import settings
 from setting import *
 from sprites import *
@@ -28,10 +30,12 @@ screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("my first game")
 clock = pg.time.Clock() 
 
+player_img = pg.image.load(path.join(img_folder, "bell-ar-man.png")).convert()
+
 all_sprites = pg.sprite.Group()
 enemies = pg.sprite.Group()
 # defines player as player
-player = Player()
+player = Player(player_img)
 invader = Mob()
 invader.image.fill((0,0,255))
 invader.vel = vec(randint (1,8), randint (8,10))
@@ -42,7 +46,6 @@ for i in range(0,10):
     all_sprites.add(m)
     enemies.add(m)
 
-    
                  
 # testSprite = Sprite()
 # testSprite.image = pg.Surface((50,50))
