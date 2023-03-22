@@ -77,6 +77,7 @@ while RUNNING:
     # draw and render section of game loop
     screen.fill(BLUE)
     all_sprites.draw(screen)
+    screen.blit(player_img, player.rect)
     # double buffering draws frames for entire screen
     pg.display.flip()
     # pg.display.update() -> only updates a portion of the screen
