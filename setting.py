@@ -13,8 +13,11 @@ PLAYER_ACC  = 2
 PLAYER_FRICTION = -0.12
 MOB_FRICTION = -0.7
 MOB_ACC= 0.7
-
+PLAYER_GRAV = 1.5
+PLAYER_JUMP = 20
 ################ colors ##################
 BLACK = (0,0,0)
 BLUE = (50, 50, 255)
 RED = (200,0,0)
+WHITE = (255,255,255)
+GREEN = (0,255,0)

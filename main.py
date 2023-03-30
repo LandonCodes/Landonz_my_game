@@ -1,36 +1,58 @@
 #file created by landon zafiropoulo (test)
 
-# import libray
+# import libraries
+# test comment for git 
 import pygame as pg
 import random
 import os
 
+# need this to create file paths effectively
 from os import path
+
 # import settings
 from setting import *
 from sprites import *
 from random import randint
 # from pg.sprite import Sprite
+
+# set up assets folders
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, "images")
+
+# create the game class to organize game content better...
 class Game:
-    def __int__(self):
+    # inits the pygame stuff including setting up screen/display area
+    def __init__(self):
         pg.init()
         pg.mixer.init()
-        self.scree = pg.display.set_mode((WIDTH, HEIGHT))
-        pg.display.set_caption("MY GAME")
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        pg.display.set_caption("My Game...")
         self.clock = pg.time.Clock()
         self.running = True
-    
+    # method to create a new game...
     def new(self):
-        self.score = 0
-        self.all_sprites = pg.sprite.Group()
-        self.platforms = pg.sprite.Group()
-        self.enemies = pg.sprite.Group()
-        self.player = Player(self)
-        self.all_sprites.add(self.player)
-        for i in range(1,10):
-            e = Mob()
-            self.all_sprites.add(e)
-        self.run()
+            self.score = 0
+            self.all_sprites = pg.sprite.Group()
+            self.platforms = pg.sprite.Group()
+            self.enemies = pg.sprite.Group()
+            # instantiates player class from sprites file, and passes this game class as
+            # an argument
+            self.player = Player(self)
+            # instantiate a platform
+            self.plat1 = Platform(0,HEIGHT-25, WIDTH, 25)
+            self.plat2 = Platform(200,400, WIDTH, 25)
+            self.plat3 = Platform(50,500, 500, 25)
+            self.all_sprites.add(self.player)
+            self.all_sprites.add(self.plat1)
+            self.all_sprites.add(self.plat2)
+            self.all_sprites.add(self.plat3)
+            self.platforms.add(self.plat1)
+            self.platforms.add(self.plat2)
+            self.platforms.add(self.plat3)
+            # for i in range(1,10):
+            #     e = Mob()
+            #     self.all_sprites.add(e)
+            self.run()  
     def run(self):
         self.playing = True
         while self.playing:
@@ -61,6 +83,12 @@ class Game:
     #     return (x,y)
     def update(self):
         self.all_sprites.update()
+        if self.player.vel.y > 0:
+            hits = pg.sprite.spritecollide(self.player, self.platforms, False)
+            if hits:
+                # print("i've collide with a platform")
+                self.player.pos.y = hits[0].rect.top
+                self.player.vel.y = 0
     def draw(self):
         self.screen.fill(BLUE)
         self.draw_text("Hello there!", 42, WHITE, WIDTH/2, HEIGHT/10)
