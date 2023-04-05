@@ -94,16 +94,12 @@ class Mob(Sprite):
     def inbounds(self):
         if self.rect.x > WIDTH:
             self.vel.x *= -1
-            # self.acc = self.vel * -self.cofric
         if self.rect.x < 0:
             self.vel.x *= -1
-            # self.acc = self.vel * -self.cofric
         if self.rect.y < 0:
             self.vel.y *= -1
-            # self.acc = self.vel * -self.cofric
         if self.rect.y > HEIGHT:
             self.vel.y *= -1
-            # self.acc = self.vel * -self.cofric
     def update(self):
         self.inbounds()
         # self.pos.x += self.vel.x
@@ -111,8 +107,7 @@ class Mob(Sprite):
         self.pos += self.vel
         self.rect.center = self.pos
 
-# create a new platform class...
-
+# new platform class
 class Platform(Sprite):
     def __init__(self, x, y, width, height, color, variant):
         Sprite.__init__(self)

@@ -12,15 +12,21 @@
 # Sources: 
 '''
 my goal is to collect the green enemies moving around
+make a score board with the amount of enemies one collects 
+Make the green bouncy platform move side to side 
+put a couple bad red squares in that kill the player
 '''
 
 # import libs
 import pygame as pg
 import os
+import sys
 # import settings 
 from setting import *
 from sprites import *
 # from pg.sprite import Sprite
+
+
 
 # set up assets folders
 game_folder = os.path.dirname(__file__)
@@ -37,6 +43,7 @@ class Game:
         pg.display.set_caption("my game")
         self.clock = pg.time.Clock()
         self.running = True
+        self.score = 0
         print(self.screen)
     def new(self):
         # starting a new game
@@ -81,6 +88,10 @@ class Game:
     def update(self):
         self.all_sprites.update()
         hits = pg.sprite.spritecollide(self.player, self.enemies, True)
+        if hits:
+            self.score += 1
+            print(self.score)
+
         if self.player.vel.y > 0:
             hits = pg.sprite.spritecollide(self.player, self.platforms, False)
             if hits:
@@ -93,8 +104,11 @@ class Game:
                     self.player.pos.y = hits[0].rect.top
                     self.player.vel.y = 0
 
+  
+draw_text("SCORE:" + str(SCORE ))
     def draw(self):
         self.screen.fill(BLUE)
+        self.draw_text("Score: ", 30, WHITE, WIDTH/2, HEIGHT/2)
         self.all_sprites.draw(self.screen)
         # is this a method or a function?
         pg.display.flip()
@@ -108,8 +122,6 @@ class Game:
     def get_mouse_now(self):
         x,y = pg.mouse.get_pos()
         return (x,y)
-
-# instantiate the game class...
 g = Game()
 
 # kick off the game loop
