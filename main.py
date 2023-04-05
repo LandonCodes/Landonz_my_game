@@ -105,7 +105,7 @@ class Game:
                     self.player.vel.y = 0
 
   
-draw_text("SCORE:" + str(SCORE ))
+
     def draw(self):
         self.screen.fill(BLUE)
         self.draw_text("Score: ", 30, WHITE, WIDTH/2, HEIGHT/2)
