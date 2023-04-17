@@ -13,6 +13,7 @@
 '''
 my goal is to collect the green enemies moving around
 make a score board with the amount of enemies (green dots) one collects 
+add more platforms
 '''
 
 # import libs
@@ -41,6 +42,7 @@ class Game:
         pg.display.set_caption("my game")
         self.clock = pg.time.Clock()
         self.running = True
+        #sets score to zero when the game starts
         self.score = 0
         print(self.screen)
     def new(self):
@@ -51,7 +53,6 @@ class Game:
         self.enemies = pg.sprite.Group()
         self.player = Player(self)
         self.plat1 = Platform(WIDTH, 50, 0, HEIGHT-50, (150,150,150), "normal")
-        # self.plat1 = Platform(WIDTH, 50, 0, HEIGHT-50, (150,150,150), "normal")
         self.all_sprites.add(self.plat1)
 
         self.platforms.add(self.plat1)
@@ -85,8 +86,10 @@ class Game:
                     self.player.jump()
     def update(self):
         self.all_sprites.update()
+        #when the player collides with the enimies it reconizges that they collided and adds +1 point to score
         mhits = pg.sprite.spritecollide(self.player, self.enemies, True)
         if mhits:
+            #adds the point
             self.score += 1
             print(self.score)
 
@@ -106,9 +109,9 @@ class Game:
 
     def draw(self):
         self.screen.fill(BLUE)
+        #prints score color white but only score does not update the numbers
         self.draw_text("Score: ", 30, WHITE, WIDTH/2, HEIGHT/2)
         self.all_sprites.draw(self.screen)
-        self.draw_text((self.hits), 24, WHITE, WIDTH/2, HEIGHT/2)
         # is this a method or a function?
         pg.display.flip()
     def draw_text(self, text, size, color, x, y):

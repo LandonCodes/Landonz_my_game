@@ -120,3 +120,7 @@ class Platform(Sprite):
         self.rect.x = x
         self.rect.y = y
         self.variant = variant
+    def update(self):
+        self.variant == "moving"
+        self.rect.x += 1
+   
