@@ -13,7 +13,7 @@
 '''
 my goal is to collect the green enemies moving around
 make a score board with the amount of enemies (green dots) one collects 
-add more platforms
+move platforms
 '''
 
 # import libs
