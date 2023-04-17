@@ -12,9 +12,7 @@
 # Sources: 
 '''
 my goal is to collect the green enemies moving around
-make a score board with the amount of enemies one collects 
-Make the green bouncy platform move side to side 
-put a couple bad red squares in that kill the player
+make a score board with the amount of enemies (green dots) one collects 
 '''
 
 # import libs
@@ -87,8 +85,8 @@ class Game:
                     self.player.jump()
     def update(self):
         self.all_sprites.update()
-        hits = pg.sprite.spritecollide(self.player, self.enemies, True)
-        if hits:
+        mhits = pg.sprite.spritecollide(self.player, self.enemies, True)
+        if mhits:
             self.score += 1
             print(self.score)
 
@@ -110,6 +108,7 @@ class Game:
         self.screen.fill(BLUE)
         self.draw_text("Score: ", 30, WHITE, WIDTH/2, HEIGHT/2)
         self.all_sprites.draw(self.screen)
+        self.draw_text((self.hits), 24, WHITE, WIDTH/2, HEIGHT/2)
         # is this a method or a function?
         pg.display.flip()
     def draw_text(self, text, size, color, x, y):
