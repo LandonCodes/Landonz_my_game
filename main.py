@@ -93,7 +93,7 @@ class Game:
             self.score += 1
             print(self.score)
         if self.score > 9 :
-            mhits = self.score < 0 
+            mhits = self.score = 9 
             print("You Win!")
 
         if self.player.vel.y > 0:
