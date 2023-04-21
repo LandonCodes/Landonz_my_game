@@ -91,9 +91,9 @@ class Game:
         if mhits:
             #adds the point
             self.score += 1
-            print(self.score)
-        if self.score > 9 :
-            mhits = self.score = 9 
+           # print(self.score)
+        if self.score > 8 :
+            mhits = self.score = 10
             print("You Win!")
 
         if self.player.vel.y > 0:
@@ -114,6 +114,7 @@ class Game:
         self.screen.fill(BLUE)
         #prints score color white but only score does not update the numbers
         self.draw_text(str(self.score), 30, WHITE, WIDTH/2, HEIGHT/2)
+        #self.draw_text(str(self.score), 30, WHITE, WIDTH/2, HEIGHT/2)
         self.all_sprites.draw(self.screen)
         # is this a method or a function?
         pg.display.flip()
