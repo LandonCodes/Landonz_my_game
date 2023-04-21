@@ -92,6 +92,9 @@ class Game:
             #adds the point
             self.score += 1
             print(self.score)
+        if self.score > 9 :
+            mhits = self.score < 0 
+            print("You Win!")
 
         if self.player.vel.y > 0:
             hits = pg.sprite.spritecollide(self.player, self.platforms, False)
