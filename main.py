@@ -113,7 +113,7 @@ class Game:
     def draw(self):
         self.screen.fill(BLUE)
         #prints score color white but only score does not update the numbers
-        self.draw_text("Score: ", 30, WHITE, WIDTH/2, HEIGHT/2)
+        self.draw_text(str(self.score), 30, WHITE, WIDTH/2, HEIGHT/2)
         self.all_sprites.draw(self.screen)
         # is this a method or a function?
         pg.display.flip()
